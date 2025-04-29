@@ -8,7 +8,7 @@ export const windDirections = {
   NE: { icon: "arrow-up", rotate: "225", name: "Noreste" },
   NO: { icon: "arrow-up", rotate: "135", name: "Noroeste" },
   NW: { icon: "arrow-up", rotate: "135", name: "Noroeste" },
-  SE: { icon: "arrow-up", rotate: "45", name: "Sureste" },
+  SE: { icon: "arrow-down", rotate: "135", name: "Sureste" },
   SO: { icon: "arrow-up", rotate: "45", name: "Suroeste" },
   SW: { icon: "arrow-up", rotate: "45", name: "Suroeste" },
 };
