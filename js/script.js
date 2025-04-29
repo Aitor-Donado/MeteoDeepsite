@@ -1,4 +1,4 @@
-// Wind direction icons mapping
+/* // Wind direction icons mapping
 const windDirections = {
   N: { icon: "arrow-up", rotate: "0", name: "Norte" },
   NE: { icon: "arrow-up-right", rotate: "45", name: "Noreste" },
@@ -11,7 +11,9 @@ const windDirections = {
   O: { icon: "arrow-left", rotate: "270", name: "Oeste" },
   NO: { icon: "arrow-up-left", rotate: "315", name: "Noroeste" },
   SO: { icon: "arrow-down-left", rotate: "225", name: "Suroeste" },
-};
+}; */
+
+import { windDirections } from "./constants/windDirections.js";
 
 // Weather icons mapping based on AEMET codes
 const weatherIcons = {
@@ -597,7 +599,7 @@ function renderWeatherData(predicciones) {
 
 // Function to get municipalities based on selected province
 const obten_municipios = function (provincia) {
-  fetch("./recursos/municipios.json")
+  fetch("../recursos/municipios.json")
     .then((response) => {
       if (!response.ok) {
         throw new Error("No se pudo cargar el archivo JSON");
@@ -605,18 +607,18 @@ const obten_municipios = function (provincia) {
       return response.json();
     })
     .then((data) => {
-      let provincia_seleccionada = document.getElementById("provincia").value;
-      let datos_provincia = data.filter(
+      const provincia_seleccionada = document.getElementById("provincia").value;
+      const datos_provincia = data.filter(
         (m) => m.Provincia === provincia_seleccionada
       );
 
-      selector_municipio = document.getElementById("municipio");
+      const selector_municipio = document.getElementById("municipio");
       selector_municipio.innerHTML =
         '<option value="">Selecciona un municipio</option>';
 
       datos_provincia.forEach((municipio) => {
-        let opcion = document.createElement("option");
-        opcion.innerText = municipio.Municipio;
+        const opcion = document.createElement("option"); // También declarada con const
+        opcion.textContent = municipio.Municipio; // Mejor que innerText
         opcion.value = municipio.Codigo;
         selector_municipio.appendChild(opcion);
       });
@@ -625,6 +627,10 @@ const obten_municipios = function (provincia) {
     })
     .catch((error) => {
       console.error("Error al leer municipios.json:", error);
+      // Opcional: Mostrar mensaje al usuario
+      const selector_municipio = document.getElementById("municipio");
+      selector_municipio.innerHTML =
+        '<option value="">Error cargando municipios</option>';
     });
 };
 
