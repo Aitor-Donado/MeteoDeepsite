@@ -512,6 +512,7 @@ function renderWeatherData(predicciones) {
   renderSkyStatus(today.estadoCielo, skyStatusContainer);
 
   // Render summaries for tomorrow and the day after
+  renderDaySummary(weatherData.prediccion.dia[0], 0);
   renderDaySummary(weatherData.prediccion.dia[1], 1);
   renderDaySummary(weatherData.prediccion.dia[2], 2);
 
